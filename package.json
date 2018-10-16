@@ -1,13 +1,19 @@
 {
   "name": "splitter-embark",
   "version": "0.0.1",
-  "description": "",
   "scripts": {
     "test": "embark test"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "",
-  "devDependencies": {
-  }
+  "devDependencies": {},
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bignumber.js": "^7.2.1"
+  },
+  "description": ""
 }

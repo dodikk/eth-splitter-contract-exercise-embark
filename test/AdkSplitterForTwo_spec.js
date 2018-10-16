@@ -1,16 +1,44 @@
 
-var BigNumber = require('bignumber.js');
-const AdkSplitterForTwo = artifacts.require("./AdkSplitterForTwo.sol");
+const BigNumber = require('bignumber.js');
+const AdkSplitterForTwo = require("Embark/contracts/AdkSplitterForTwo.sol");
+
+let accounts;
+
+var _samePerson    ; 
+var _firstStranger ; 
+var _secondStranger; 
+
+
+
+config(
+
+{
+    contracts:
+    {
+        "AdkSplitterForTwo" :
+        {
+            args: []
+        }
+    }
+},
+
+(_err, web3_accounts) =>
+{
+    accounts = web3_accounts;
+
+    _samePerson = accounts[1]; // zero might be coinbase. avoiding that due to balance checks
+
+    _firstStranger  = accounts[2];
+    _secondStranger = accounts[3];
+}
+
+); // config
 
 
 contract('AdkSplitterForTwo', 
-function(accounts)
+function()
 {
 
-    var _samePerson = accounts[1]; // zero might be coinbase. avoiding that due to balance checks
-
-    var _firstStranger  = accounts[2];
-    var _secondStranger = accounts[3];
 
 
 
