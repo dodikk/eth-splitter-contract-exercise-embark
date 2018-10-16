@@ -177,7 +177,8 @@ async function()
 	    var splitOpReceipt =
             await splitterContractInstance.Split(
 		samePerson,
-		samePerson,
+		samePerson)
+                                          .send(
             {
                 from    : samePerson, 
                 value   : 1         ,
@@ -258,7 +259,8 @@ async function()
 	    var splitOpReceipt =
             await splitterContractInstance.Split(
 		samePerson,
-		samePerson,
+		samePerson)
+            .send(
             {
                 from    : samePerson, 
                 value   : 0         ,
@@ -345,7 +347,8 @@ async function()
 	    var splitOpReceipt =
             await splitterContractInstance.Split(
 		samePerson,
-		samePerson,
+		samePerson)
+            .send(
             {
                 from : samePerson, 
                 value: 2000      ,
@@ -419,9 +422,9 @@ it("should give equal shares to strangers", async function()
         // https://embark.status.im/tutorials/token_factory_1.html
         //
 
-        var splitTransactionReceipt =
+        splitTransactionReceipt =
         await splitterContractInstance.methods
-                                      .Split(firstStrancer, secondStranger)
+                                      .Split(firstStranger, secondStranger)
                                       .send(
          {
              from    : samePerson ,
@@ -429,18 +432,6 @@ it("should give equal shares to strangers", async function()
              gasPrice: gasPriceWei
          }); 
 
-
-
-/*
-        await splitterContractInstance.Split(
-            firstStranger,
-            secondStranger,
-         {
-             from    : samePerson ,
-             value   : weiToSplit ,
-             gasPrice: gasPriceWei
-         }); 
-*/ 
     }
     catch (ex)
     {
@@ -526,7 +517,8 @@ it("should give equal shares to strangers -- odd amount", async function()
         var splitTransactionReceipt =
         await splitterContractInstance.Split(
             firstStranger,
-            secondStranger,
+            secondStranger)
+        .send(
          {
              from    : samePerson ,
              value   : weiToSplit ,
@@ -616,7 +608,8 @@ it("should make only one transaction if first receiver is same as sender", async
         var splitTransactionReceipt =
         await splitterContractInstance.Split(
             firstStranger,
-            secondStranger,
+            secondStranger)
+        .send(
          {
              from    : samePerson ,
              value   : weiToSplit ,
@@ -702,7 +695,8 @@ it("should make only one transaction if second receiver is same as sender", asyn
         var splitTransactionReceipt =
         await splitterContractInstance.Split(
             firstStranger,
-            secondStranger,
+            secondStranger)
+        .send(
          {
              from    : samePerson ,
              value   : weiToSplit ,

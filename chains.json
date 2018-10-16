@@ -242,5 +242,29 @@
         "address": "0xca6b2338B85cc78C965B84058B9435d532eA7eC1"
       }
     }
+  },
+  "0xa879da2137d76e4b16d7382b9c20c21c9eede2b5e0dafd1f2a4a2970407cce2a": {
+    "contracts": {
+      "0xa70c71b4d10bf77ddfccb278277087c7a1a4f6c110d5d4a4df903fa87f64c934": {
+        "name": "AdkSplitterForTwo",
+        "address": "0xf7ADa6F4Da24cc2cAf8838543C103FE6B04d4075"
+      }
+    }
+  },
+  "0x663755aac861c5c792598c0dc6cfe610552554a801bf27108a96e9c7a36310d7": {
+    "contracts": {
+      "0xa70c71b4d10bf77ddfccb278277087c7a1a4f6c110d5d4a4df903fa87f64c934": {
+        "name": "AdkSplitterForTwo",
+        "address": "0x41ccfE75a87160E697fAE35104Cc5E1E0A923F1D"
+      }
+    }
+  },
+  "0xa28f57f5a7940086c2f1de54b621b0331c92700a10b1cca936fe3fb8f263d285": {
+    "contracts": {
+      "0xa70c71b4d10bf77ddfccb278277087c7a1a4f6c110d5d4a4df903fa87f64c934": {
+        "name": "AdkSplitterForTwo",
+        "address": "0xA6e0e7E71fF2aB50B0277dB3fC623875C778A22f"
+      }
+    }
   }
 }
