@@ -3,3 +3,9 @@ node_modules/
 dist/
 config/production/password
 config/livenet/password
+
+
+## ????
+*.js.swp
+package-lock.json
+chains.json

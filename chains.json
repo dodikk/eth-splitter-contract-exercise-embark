@@ -1,1 +1,10 @@
-{}
+{
+  "0x51b269206bcaa4e4c29aa951f344daf1452bed41a18dbfcf753f10ef06ffbada": {
+    "contracts": {
+      "0xa70c71b4d10bf77ddfccb278277087c7a1a4f6c110d5d4a4df903fa87f64c934": {
+        "name": "AdkSplitterForTwo",
+        "address": "0xE2E37e3B70893ae193113b108f08277050722110"
+      }
+    }
+  }
+}
