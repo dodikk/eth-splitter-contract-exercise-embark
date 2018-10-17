@@ -1,0 +1,29 @@
+
+
+1. Transaction options are now passed to `.send()` part of the contract method call.
+Contract args are passd to the JS method with the same name the contract has.
+
+
+```js
+await splitterContractInstance.Split(firstStranger, secondStranger).send({
+             from    : samePerson ,
+             value   : weiToSplit ,
+             gasPrice: gasPriceWei
+         }); 
+```
+
+
+2. `web3.eth.sendTransaction` is the only way to invoke the fallback function as of web3.js v1.0
+
+3. gasPrice zero must be a string constant. Numbers are misinterpreted.
+https://github.com/ethereum/web3.js/issues/1458
+
+
+4. Contract method call produces transaction receipt only in web3.js v1.0. 
+It has no event logs array.
+Still trying to figure this out. To be continue...
+
+
+
+====
+https://medium.com/coinmonks/solidity-and-web3-js-141115b0f8c5
