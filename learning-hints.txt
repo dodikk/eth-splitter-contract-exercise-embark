@@ -20,9 +20,10 @@ https://github.com/ethereum/web3.js/issues/1458
 
 
 4. Contract method call produces transaction receipt only in web3.js v1.0. 
-It has no event logs array.
-Still trying to figure this out. To be continue...
+It has no`logs` array.
 
+The name has been changed to "events". And now it is a dictionary.
+https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
 
 
 ====

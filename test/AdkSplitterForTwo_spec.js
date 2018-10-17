@@ -849,7 +849,7 @@ it("should make only one transaction if second receiver is same as sender", asyn
     var splitTransactionReceipt = null;
     try
     {
-        var splitTransactionReceipt =
+        splitTransactionReceipt =
         await splitterContractInstance.methods
         .Split(
             firstStranger,
@@ -904,20 +904,30 @@ it("should make only one transaction if second receiver is same as sender", asyn
 
 
 
-    var events = splitTransactionReceipt.logs;
-  
-/*
-    assert.equal(6, events.length);
+    var events = splitTransactionReceipt.events;
+    assert.notEqual(events, null, JSON.stringify(splitTransactionReceipt));
 
-    assert.equal(events[0].event, "LogBeginSplit");
-    assert.equal(events[1].event, "LogTransferToFirstReceiverBegin");
-    assert.equal(events[2].event, "LogTransferToFirstReceiverEnd");
-    assert.equal(events[3].event, "LogTransferToSecondReceiverBegin");
-    assert.equal(events[4].event, "LogTransferToSecondReceiverEnd");
-    assert.equal(events[5].event, "LogEndSplit");
 
-    // assert.fail("[debug] force fail to see the events log");
-*/
+    // https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
+    //
+    var eventsCount = Object.keys(events).length;
+    assert.equal(6, eventsCount);
+
+    assert.notEqual(events["LogBeginSplit"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogEndSplit"], null, JSON.stringify(splitTransactionReceipt));
+
+
+    assert.equal(events["LogBeginSplit"                   ].logIndex, 0, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverBegin" ].logIndex, 1, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverEnd"   ].logIndex, 2, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverBegin"].logIndex, 3, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverEnd"  ].logIndex, 4, "exact events order check failed");
+    assert.equal(events["LogEndSplit"                     ].logIndex, 5, "exact events order check failed");
+
 
 });
 
