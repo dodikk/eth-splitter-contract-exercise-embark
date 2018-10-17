@@ -532,10 +532,36 @@ it("should give equal shares to strangers -- odd amount", async function()
     var firstStranger  = _firstStranger ;
     var secondStranger = _secondStranger;
 
+    assert.notEqual(samePerson    , null, "sender address is null");
+    assert.notEqual(firstStranger , null, "first receiver address is null");
+    assert.notEqual(secondStranger, null, "second receiver address is null");
 
-    var initialSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var initialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var initialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+
+
+    var strInitialSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strInitialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strInitialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+
+    assert.notEqual(strInitialSenderBalance         , null, "sender balance is null");
+    assert.notEqual(strInitialFirstStrangerBalance  , null, "sender balance is null");
+    assert.notEqual(strInitialSecondStrangerBalance , null, "sender balance is null");
+
+
+    // web3.eth.getBalance() returns a string in wei
+    // as of web3.js v1.0.0
+    //
+    // https://web3js.readthedocs.io/en/1.0/web3-eth.html#getbalance
+    //
+    assert.equal(typeof strInitialSenderBalance        , "string", "string balance expected. Received : " + typeof initialSenderBalance);
+    assert.equal(typeof strInitialFirstStrangerBalance , "string", "string balance expected. Received : " + typeof initialSenderBalance);
+    assert.equal(typeof strInitialSecondStrangerBalance, "string", "string balance expected. Received : " + typeof initialSenderBalance);
+
+
+    var initialSenderBalance         = new BigNumber(strInitialSenderBalance        );
+    var initialFirstStrangerBalance  = new BigNumber(strInitialFirstStrangerBalance );
+    var initialSecondStrangerBalance = new BigNumber(strInitialSecondStrangerBalance);
+
+
 
     var weiToSplit    = 15;
     var strangerShare = 7 ;
