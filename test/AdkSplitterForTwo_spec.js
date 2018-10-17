@@ -429,9 +429,30 @@ it("should give equal shares to strangers", async function()
     var secondStranger = _secondStranger;
 
 
-    var initialSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var initialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var initialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+
+    var strInitialSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strInitialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strInitialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+
+    assert.notEqual(strInitialSenderBalance         , null, "sender balance is null");
+    assert.notEqual(strInitialFirstStrangerBalance  , null, "sender balance is null");
+    assert.notEqual(strInitialSecondStrangerBalance , null, "sender balance is null");
+
+
+    // web3.eth.getBalance() returns a string in wei
+    // as of web3.js v1.0.0
+    //
+    // https://web3js.readthedocs.io/en/1.0/web3-eth.html#getbalance
+    //
+    assert.equal(typeof strInitialSenderBalance        , "string", "string balance expected. Received : " + typeof initialSenderBalance);
+    assert.equal(typeof strInitialFirstStrangerBalance , "string", "string balance expected. Received : " + typeof initialSenderBalance);
+    assert.equal(typeof strInitialSecondStrangerBalance, "string", "string balance expected. Received : " + typeof initialSenderBalance);
+
+
+    var initialSenderBalance         = new BigNumber(strInitialSenderBalance        );
+    var initialFirstStrangerBalance  = new BigNumber(strInitialFirstStrangerBalance );
+    var initialSecondStrangerBalance = new BigNumber(strInitialSecondStrangerBalance);
+
 
     var gasPriceWei   = 10000;
     var weiToSplit    = 2000 ;
@@ -494,20 +515,26 @@ it("should give equal shares to strangers", async function()
     var expectedSecondStrangerBalance = initialSecondStrangerBalance.plus(strangerShare);
 
 
-    var actualSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var actualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var actualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
-    var actualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+    var strActualSenderBalance         = await web3.eth.getBalance(samePerson    ); 
+    var strActualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger ); 
+    var strActualSecondStrangerBalance = await web3.eth.getBalance(secondStranger); 
+    var strActualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+
+    var actualSenderBalance         = new BigNumber(strActualSenderBalance        ); 
+    var actualFirstStrangerBalance  = new BigNumber(strActualFirstStrangerBalance ); 
+    var actualSecondStrangerBalance = new BigNumber(strActualSecondStrangerbalance); 
+    var actualContractBalance       = new BigNumber(strActualContractBalance      ); 
+
 
 
     assert.deepEqual(actualSenderBalance        .toString(10), expectedSenderBalance        .toString(10), "sender balance mismatch"         );
     assert.deepEqual(actualFirstStrangerBalance .toString(10), expectedFirstStrangerBalance .toString(10), "first stranger balance mismatch" );
     assert.deepEqual(actualSecondStrangerBalance.toString(10), expectedSecondStrangerBalance.toString(10), "second stranger balance mismatch");
 
-          assert.deepEqual(
-               actualContractBalance.toString(10),
-               initialContractBalance.toString(10),
-               "unexpected contract balance change");
+    assert.deepEqual(
+         actualContractBalance.toString(10),
+         initialContractBalance.toString(10),
+         "unexpected contract balance change");
 
 
 
@@ -611,10 +638,16 @@ it("should give equal shares to strangers -- odd amount", async function()
     var expectedSecondStrangerBalance = initialSecondStrangerBalance.plus(strangerShare);
 
 
-    var actualSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var actualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var actualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
-    var actualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+    var strActualSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strActualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strActualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+    var strActualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+
+
+    var actualSenderBalance         = new BigNumber(strActualSenderBalance        ); 
+    var actualFirstStrangerBalance  = new BigNumber(strActualFirstStrangerBalance ); 
+    var actualSecondStrangerBalance = new BigNumber(strActualSecondStrangerbalance); 
+    var actualContractBalance       = new BigNumber(strActualContractBalance      ); 
 
 
 
