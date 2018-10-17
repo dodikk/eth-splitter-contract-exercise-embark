@@ -82,6 +82,8 @@ async function()
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
 
 // more verbose legacy syntax
 //
@@ -100,7 +102,7 @@ async function()
 
 
 	    var splitOpReceipt =
-            web3.eth.sendTransaction(
+            await web3.eth.sendTransaction(
             {
                 to      : splitterInstanceAddress, 
                 from    : samePerson             , 
@@ -179,6 +181,8 @@ async function()
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
     var initialContractBalance  = 
         await web3.eth.getBalance(splitterInstanceAddress);
 
@@ -266,6 +270,8 @@ async function()
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
     var initialContractBalance  = 
         await web3.eth.getBalance(splitterInstanceAddress);
 
@@ -358,6 +364,8 @@ async function()
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
     var initialContractBalance  = 
         await web3.eth.getBalance(splitterInstanceAddress);
 
@@ -437,6 +445,8 @@ it("should give equal shares to strangers", async function()
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
     var initialContractBalance  = 
         await web3.eth.getBalance(splitterInstanceAddress);
 
@@ -537,6 +547,8 @@ it("should give equal shares to strangers -- odd amount", async function()
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
 
     var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
     var actualContractBalance   = await web3.eth.getBalance(splitterInstanceAddress);
@@ -634,6 +646,8 @@ it("should make only one transaction if first receiver is same as sender", async
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
 
     var initialContractBalance  = 
         await web3.eth.getBalance(splitterInstanceAddress);
@@ -726,6 +740,8 @@ it("should make only one transaction if second receiver is same as sender", asyn
         await splitterContractInstance.methods
                                       .GetContractAddress()
                                       .call();
+    assert.notEqual(splitterInstanceAddress, null, "instance address is null");
+
     var initialContractBalance  = 
         await web3.eth.getBalance(splitterInstanceAddress);
 
