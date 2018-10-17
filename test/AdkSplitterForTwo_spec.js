@@ -550,19 +550,27 @@ it("should give equal shares to strangers", async function()
          "unexpected contract balance change");
 
 
-/*
-    var events = splitTransactionReceipt.logs;
-    assert.equal(6, events.length);
+    // https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
+    //
+    var events = splitTransactionReceipt.events;
+    var eventsCount = Object.keys(events).length;
+    assert.equal(6, eventsCount);
 
-    assert.equal(events[0].event, "LogBeginSplit");
-    assert.equal(events[1].event, "LogTransferToFirstReceiverBegin");
-    assert.equal(events[2].event, "LogTransferToFirstReceiverEnd");
-    assert.equal(events[3].event, "LogTransferToSecondReceiverBegin");
-    assert.equal(events[4].event, "LogTransferToSecondReceiverEnd");
-    assert.equal(events[5].event, "LogEndSplit");
+    assert.notEqual(events["LogBeginSplit"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogEndSplit"], null, JSON.stringify(splitTransactionReceipt));
 
-    // assert.fail("[debug] force fail to see the events log");
-*/
+
+    assert.equal(events["LogBeginSplit"                   ].logIndex, 0, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverBegin" ].logIndex, 1, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverEnd"   ].logIndex, 2, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverBegin"].logIndex, 3, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverEnd"  ].logIndex, 4, "exact events order check failed");
+    assert.equal(events["LogEndSplit"                     ].logIndex, 5, "exact events order check failed");
+
 
 });
 
@@ -625,7 +633,7 @@ it("should give equal shares to strangers -- odd amount", async function()
     var splitTransactionReceipt = null;
     try
     {
-        var splitTransactionReceipt =
+        splitTransactionReceipt =
         await splitterContractInstance.methods
          .Split(
              firstStranger,  
@@ -674,21 +682,34 @@ it("should give equal shares to strangers -- odd amount", async function()
          initialContractBalance.toString(10),
          "unexpected contract balance change");
 
-/*
-    var events = splitTransactionReceipt.logs;
-    assert.equal(8, events.length);
 
-    assert.equal(events[0].event, "LogBeginSplit");
-    assert.equal(events[1].event, "LogTransferToFirstReceiverBegin");
-    assert.equal(events[2].event, "LogTransferToFirstReceiverEnd");
-    assert.equal(events[3].event, "LogTransferToSecondReceiverBegin");
-    assert.equal(events[4].event, "LogTransferToSecondReceiverEnd");
-    assert.equal(events[5].event, "LogTransferChangeToSenderBegin");
-    assert.equal(events[6].event, "LogTransferChangeToSenderEnd");
-    assert.equal(events[7].event, "LogEndSplit");
 
-    // assert.fail("[debug] force fail to see the events log");
-*/
+
+    // https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
+    //
+    var events = splitTransactionReceipt.events;
+    var eventsCount = Object.keys(events).length;
+    assert.equal(8, eventsCount);
+
+    assert.notEqual(events["LogBeginSplit"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferChangeToSenderBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferChangeToSenderEnd"  ], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogEndSplit"], null, JSON.stringify(splitTransactionReceipt));
+
+
+    assert.equal(events["LogBeginSplit"                   ].logIndex, 0, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverBegin" ].logIndex, 1, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverEnd"   ].logIndex, 2, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverBegin"].logIndex, 3, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverEnd"  ].logIndex, 4, "exact events order check failed");
+    assert.equal(events["LogTransferChangeToSenderBegin"  ].logIndex, 5, "exact events order check failed");
+    assert.equal(events["LogTransferChangeToSenderEnd"    ].logIndex, 6, "exact events order check failed");
+    assert.equal(events["LogEndSplit"                     ].logIndex, 7, "exact events order check failed");
+
 
 });
 
@@ -719,7 +740,6 @@ it("should make only one transaction if first receiver is same as sender", async
 
 
     var splitterContractInstance = AdkSplitterForTwo;
-//    var splitterContractInstance = await AdkSplitterForTwo.deployed();
 
 
     var splitterInstanceAddress = 
@@ -737,7 +757,7 @@ it("should make only one transaction if first receiver is same as sender", async
     var splitTransactionReceipt = null;
     try
     {
-        var splitTransactionReceipt =
+        splitTransactionReceipt =
         await splitterContractInstance.methods
         .Split(
             firstStranger,
@@ -788,20 +808,31 @@ it("should make only one transaction if first receiver is same as sender", async
          "unexpected contract balance change");
 
 
-    var events = splitTransactionReceipt.logs;
 
-/*
-    assert.equal(6, events.length);
+    var events = splitTransactionReceipt.events;
+    assert.notEqual(events, null, JSON.stringify(splitTransactionReceipt));
 
-    assert.equal(events[0].event, "LogBeginSplit");
-    assert.equal(events[1].event, "LogTransferToFirstReceiverBegin");
-    assert.equal(events[2].event, "LogTransferToFirstReceiverEnd");
-    assert.equal(events[3].event, "LogTransferToSecondReceiverBegin");
-    assert.equal(events[4].event, "LogTransferToSecondReceiverEnd");
-    assert.equal(events[5].event, "LogEndSplit");
 
-    // assert.fail("[debug] force fail to see the events log");
-*/
+    // https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send
+    //
+    var eventsCount = Object.keys(events).length;
+    assert.equal(6, eventsCount);
+
+    assert.notEqual(events["LogBeginSplit"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToFirstReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverBegin"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogTransferToSecondReceiverEnd"], null, JSON.stringify(splitTransactionReceipt));
+    assert.notEqual(events["LogEndSplit"], null, JSON.stringify(splitTransactionReceipt));
+
+
+    assert.equal(events["LogBeginSplit"                   ].logIndex, 0, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverBegin" ].logIndex, 1, "exact events order check failed");
+    assert.equal(events["LogTransferToFirstReceiverEnd"   ].logIndex, 2, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverBegin"].logIndex, 3, "exact events order check failed");
+    assert.equal(events["LogTransferToSecondReceiverEnd"  ].logIndex, 4, "exact events order check failed");
+    assert.equal(events["LogEndSplit"                     ].logIndex, 5, "exact events order check failed");
+
 });
 
 
