@@ -96,18 +96,20 @@ async function()
         await web3.eth.getBalance(splitterInstanceAddress);
 
 
+    var splitOpReceipt = null;
+
         try
         {
 //            await splitterContractInstance.sendTransaction(
 
 
-	    var splitOpReceipt =
+            splitOpReceipt =
             await web3.eth.sendTransaction(
             {
                 to      : splitterInstanceAddress, 
                 from    : samePerson             , 
                 value   : 2000                   , 
-                gasPrice: 0
+                gasPrice: '0'
             });
 
 
@@ -118,6 +120,9 @@ async function()
        }
        catch (ex)
        {
+           assert.equal(splitOpReceipt, null);
+
+
            var actualSenderBalance         = await web3.eth.getBalance(samePerson    );
            var actualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
            var actualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
@@ -187,9 +192,11 @@ async function()
         await web3.eth.getBalance(splitterInstanceAddress);
 
 
+    var splitOpReceipt = null;
+
         try
         {
-	    var splitOpReceipt =
+	    splitOpReceipt =
             await splitterContractInstance.methods
             .Split(         
                 samePerson, 
@@ -198,7 +205,7 @@ async function()
             {                         
                 from    : samePerson, 
                 value   : 1         , 
-                gasPrice: 0
+                gasPrice: '0'
             });
 
 
@@ -209,6 +216,8 @@ async function()
        }
        catch (ex)
        {
+           assert.equal(splitOpReceipt, null);
+
            var actualSenderBalance         = await web3.eth.getBalance(samePerson    );
            var actualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
            var actualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
@@ -287,7 +296,7 @@ async function()
             {                         
                 from    : samePerson, 
                 value   : 0         , 
-                gasPrice: 0           
+                gasPrice: '0'         
             });
 
 
@@ -382,7 +391,7 @@ async function()
             {
                 from : samePerson, 
                 value: 2000      , 
-                gasPrice: 0        
+                gasPrice: '0'     
             });
 
 
@@ -488,7 +497,7 @@ it("should give equal shares to strangers", async function()
          {
              from    : samePerson , 
              value   : weiToSplit , 
-             gasPrice: gasPriceWei  
+             gasPrice: gasPriceWei.toString(10)
          });
 
     }
@@ -624,7 +633,7 @@ it("should give equal shares to strangers -- odd amount", async function()
          {
              from    : samePerson , 
              value   : weiToSplit , 
-             gasPrice: 0            
+             gasPrice: '0'          
          });
     }
     catch (ex)
@@ -735,7 +744,7 @@ it("should make only one transaction if first receiver is same as sender", async
          {
              from    : samePerson ,
              value   : weiToSplit ,
-             gasPrice: 0
+             gasPrice: '0'
          });
     }
     catch (ex)
@@ -845,7 +854,7 @@ it("should make only one transaction if second receiver is same as sender", asyn
          {
              from    : samePerson ,
              value   : weiToSplit ,
-             gasPrice: 0
+             gasPrice: '0'
          });
     }
     catch (ex)
