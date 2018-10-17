@@ -79,7 +79,9 @@ async function()
     assert.notEqual(AdkSplitterForTwo.methods , null, JSON.stringify(AdkSplitterForTwo));
 
     var splitterInstanceAddress = 
-        await splitterContractInstance.GetContractAddress();
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
 
 // more verbose legacy syntax
 //
@@ -88,16 +90,21 @@ async function()
 //                               .GetContractAddress()
 //                               .call();
 
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
         try
         {
+//            await splitterContractInstance.sendTransaction(
+
+
 	    var splitOpReceipt =
-            await splitterContractInstance.sendTransaction(
+            web3.eth.sendTransaction(
             {
-                from    : samePerson, 
-                value   : 2000      ,
+                to      : splitterInstanceAddress, 
+                from    : samePerson             , 
+                value   : 2000                   , 
                 gasPrice: 0
             });
 
@@ -168,20 +175,25 @@ async function()
 //                               .send();
 
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
         try
         {
 	    var splitOpReceipt =
-            await splitterContractInstance.Split(
-		samePerson,
-		samePerson)
-                                          .send(
-            {
+            await splitterContractInstance.methods
+            .Split(         
+                samePerson, 
+                samePerson) 
+            .send(                    
+            {                         
                 from    : samePerson, 
-                value   : 1         ,
+                value   : 1         , 
                 gasPrice: 0
             });
 
@@ -250,21 +262,26 @@ async function()
 //            await AdkSplitterForTwo.deployed();
 
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
         try
         {
 	    var splitOpReceipt =
-            await splitterContractInstance.Split(
-		samePerson,
-		samePerson)
-            .send(
-            {
+            await splitterContractInstance.methods
+            .Split(         
+                samePerson, 
+                samePerson) 
+            .send(                    
+            {                         
                 from    : samePerson, 
-                value   : 0         ,
-                gasPrice: 0
+                value   : 0         , 
+                gasPrice: 0           
             });
 
 
@@ -337,22 +354,27 @@ async function()
  //           await AdkSplitterForTwo.deployed();
 
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
        
         try
         {
 	    var splitOpReceipt =
-            await splitterContractInstance.Split(
-		samePerson,
-		samePerson)
+            await splitterContractInstance.methods
+            .Split(         
+                samePerson, 
+                samePerson) 
             .send(
             {
                 from : samePerson, 
-                value: 2000      ,
-                gasPrice: 0
+                value: 2000      , 
+                gasPrice: 0        
             });
 
 
@@ -411,8 +433,12 @@ it("should give equal shares to strangers", async function()
     var splitterContractInstance = AdkSplitterForTwo;
 //    var splitterContractInstance = await AdkSplitterForTwo.deployed();
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
 
@@ -424,13 +450,15 @@ it("should give equal shares to strangers", async function()
 
         splitTransactionReceipt =
         await splitterContractInstance.methods
-                                      .Split(firstStranger, secondStranger)
-                                      .send(
+         .Split(
+             firstStranger , 
+             secondStranger) 
+         .send(
          {
-             from    : samePerson ,
-             value   : weiToSplit ,
-             gasPrice: gasPriceWei
-         }); 
+             from    : samePerson , 
+             value   : weiToSplit , 
+             gasPrice: gasPriceWei  
+         });
 
     }
     catch (ex)
@@ -505,9 +533,13 @@ it("should give equal shares to strangers -- odd amount", async function()
     var splitterContractInstance = AdkSplitterForTwo;
 //    var splitterContractInstance = await AdkSplitterForTwo.deployed();
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+
     var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
-    var actualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+    var actualContractBalance   = await web3.eth.getBalance(splitterInstanceAddress);
 
 
 
@@ -515,14 +547,15 @@ it("should give equal shares to strangers -- odd amount", async function()
     try
     {
         var splitTransactionReceipt =
-        await splitterContractInstance.Split(
-            firstStranger,
-            secondStranger)
-        .send(
+        await splitterContractInstance.methods
+         .Split(
+             firstStranger,  
+             secondStranger) 
+         .send(
          {
-             from    : samePerson ,
-             value   : weiToSplit ,
-             gasPrice: 0
+             from    : samePerson , 
+             value   : weiToSplit , 
+             gasPrice: 0            
          });
     }
     catch (ex)
@@ -551,10 +584,10 @@ it("should give equal shares to strangers -- odd amount", async function()
     assert.deepEqual(actualFirstStrangerBalance .toString(10), expectedFirstStrangerBalance .toString(10), "first stranger balance mismatch" );
     assert.deepEqual(actualSecondStrangerBalance.toString(10), expectedSecondStrangerBalance.toString(10), "second stranger balance mismatch");
 
-          assert.deepEqual(
-               actualContractBalance.toString(10),
-               initialContractBalance.toString(10),
-               "unexpected contract balance change");
+    assert.deepEqual(
+         actualContractBalance.toString(10),
+         initialContractBalance.toString(10),
+         "unexpected contract balance change");
 
 
     var events = splitTransactionReceipt.logs;
@@ -597,8 +630,13 @@ it("should make only one transaction if first receiver is same as sender", async
 //    var splitterContractInstance = await AdkSplitterForTwo.deployed();
 
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
 
@@ -606,7 +644,8 @@ it("should make only one transaction if first receiver is same as sender", async
     try
     {
         var splitTransactionReceipt =
-        await splitterContractInstance.Split(
+        await splitterContractInstance.methods
+        .Split(
             firstStranger,
             secondStranger)
         .send(
@@ -683,8 +722,12 @@ it("should make only one transaction if second receiver is same as sender", asyn
     var splitterContractInstance = AdkSplitterForTwo;
 //    var splitterContractInstance = await AdkSplitterForTwo.deployed();
 
-    var splitterInstanceAddress = await splitterContractInstance.GetContractAddress();
-    var initialContractBalance  = await web3.eth.getBalance(splitterInstanceAddress);
+    var splitterInstanceAddress = 
+        await splitterContractInstance.methods
+                                      .GetContractAddress()
+                                      .call();
+    var initialContractBalance  = 
+        await web3.eth.getBalance(splitterInstanceAddress);
 
 
 
@@ -693,7 +736,8 @@ it("should make only one transaction if second receiver is same as sender", asyn
     try
     {
         var splitTransactionReceipt =
-        await splitterContractInstance.Split(
+        await splitterContractInstance.methods
+        .Split(
             firstStranger,
             secondStranger)
         .send(
@@ -729,10 +773,10 @@ it("should make only one transaction if second receiver is same as sender", asyn
     assert.deepEqual(actualSecondStrangerBalance.toString(10), expectedSecondStrangerBalance.toString(10), "second stranger balance mismatch");
 
 
-          assert.deepEqual(
-               actualContractBalance.toString(10),
-               initialContractBalance.toString(10),
-               "unexpected contract balance change");
+    assert.deepEqual(
+         actualContractBalance.toString(10),
+         initialContractBalance.toString(10),
+         "unexpected contract balance change");
 
 
 
