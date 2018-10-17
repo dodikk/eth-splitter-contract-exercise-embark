@@ -501,18 +501,22 @@ it("should give equal shares to strangers", async function()
     }
 
 
-    var splitTransactionHash = splitTransactionReceipt.tx;
-    var splitTransaction = await web3.eth.getTransaction(splitTransactionHash);
-
-    var gasUsed_bn  = new BigNumber(splitTransactionReceipt.receipt.gasUsed);
+    var gasUsed_bn  = new BigNumber(splitTransactionReceipt.gasUsed);
     var gasPrice_bn = new BigNumber(gasPriceWei);
-
     var minerReward_bn = gasUsed_bn.multipliedBy(gasPrice_bn);
 
 
-    var expectedSenderBalance         = initialSenderBalance.minus(weiToSplit).minus(minerReward_bn);
-    var expectedFirstStrangerBalance  = initialFirstStrangerBalance.plus(strangerShare);
-    var expectedSecondStrangerBalance = initialSecondStrangerBalance.plus(strangerShare);
+
+    var expectedSenderBalance = 
+        initialSenderBalance.minus(weiToSplit)
+                            .minus(minerReward_bn);
+
+    var expectedFirstStrangerBalance  = 
+        initialFirstStrangerBalance.plus(strangerShare);
+
+
+    var expectedSecondStrangerBalance = 
+        initialSecondStrangerBalance.plus(strangerShare);
 
 
     var strActualSenderBalance         = await web3.eth.getBalance(samePerson    ); 
