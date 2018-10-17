@@ -646,7 +646,7 @@ it("should give equal shares to strangers -- odd amount", async function()
 
     var actualSenderBalance         = new BigNumber(strActualSenderBalance        ); 
     var actualFirstStrangerBalance  = new BigNumber(strActualFirstStrangerBalance ); 
-    var actualSecondStrangerBalance = new BigNumber(strActualSecondStrangerbalance); 
+    var actualSecondStrangerBalance = new BigNumber(strActualSecondStrangerBalance); 
     var actualContractBalance       = new BigNumber(strActualContractBalance      ); 
 
 
@@ -692,9 +692,15 @@ it("should make only one transaction if first receiver is same as sender", async
     var strangerShare = 1000 ;
 
 
-    var initialSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var initialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var initialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+    var strInitialSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strInitialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strInitialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+
+
+    var initialSenderBalance         = new BigNumber(strInitialSenderBalance        ); 
+    var initialFirstStrangerBalance  = new BigNumber(strInitialFirstStrangerBalance ); 
+    var initialSecondStrangerBalance = new BigNumber(strInitialSecondStrangerBalance); 
+
 
 
     var splitterContractInstance = AdkSplitterForTwo;
@@ -742,10 +748,17 @@ it("should make only one transaction if first receiver is same as sender", async
     var expectedSecondStrangerBalance = initialSecondStrangerBalance.plus(strangerShare);
 
 
-    var actualSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var actualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var actualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
-    var actualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+    var strActualSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strActualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strActualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+    var strActualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+
+
+    var actualSenderBalance         = new BigNumber(strActualSenderBalance        ); 
+    var actualFirstStrangerBalance  = new BigNumber(strActualFirstStrangerBalance ); 
+    var actualSecondStrangerBalance = new BigNumber(strActualSecondStrangerBalance); 
+    var actualContractBalance       = new BigNumber(strActualContractBalance      ); 
+
 
 
 
@@ -754,10 +767,10 @@ it("should make only one transaction if first receiver is same as sender", async
     assert.deepEqual(actualSecondStrangerBalance.toString(10), expectedSecondStrangerBalance.toString(10), "second stranger balance mismatch");
 
 
-          assert.deepEqual(
-               actualContractBalance.toString(10),
-               initialContractBalance.toString(10),
-               "unexpected contract balance change");
+    assert.deepEqual(
+         actualContractBalance.toString(10),
+         initialContractBalance.toString(10),
+         "unexpected contract balance change");
 
 
     var events = splitTransactionReceipt.logs;
@@ -788,9 +801,18 @@ it("should make only one transaction if second receiver is same as sender", asyn
     var strangerShare = 1000 ;
 
 
-    var initialSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var initialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var initialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+    var strInitialSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strInitialFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strInitialSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+
+
+    var initialSenderBalance         = new BigNumber(strInitialSenderBalance        ); 
+    var initialFirstStrangerBalance  = new BigNumber(strInitialFirstStrangerBalance ); 
+    var initialSecondStrangerBalance = new BigNumber(strInitialSecondStrangerBalance); 
+
+
+
+
 
     var splitterContractInstance = AdkSplitterForTwo;
 //    var splitterContractInstance = await AdkSplitterForTwo.deployed();
@@ -836,10 +858,19 @@ it("should make only one transaction if second receiver is same as sender", asyn
     var expectedSenderBalance         = expectedSecondStrangerBalance;
 
 
-    var actualSenderBalance         = await web3.eth.getBalance(samePerson    );
-    var actualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
-    var actualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
-    var actualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+
+    var strActualSenderBalance         = await web3.eth.getBalance(samePerson    );
+    var strActualFirstStrangerBalance  = await web3.eth.getBalance(firstStranger );
+    var strActualSecondStrangerBalance = await web3.eth.getBalance(secondStranger);
+    var strActualContractBalance       = await web3.eth.getBalance(splitterInstanceAddress);
+
+
+    var actualSenderBalance         = new BigNumber(strActualSenderBalance        ); 
+    var actualFirstStrangerBalance  = new BigNumber(strActualFirstStrangerBalance ); 
+    var actualSecondStrangerBalance = new BigNumber(strActualSecondStrangerBalance); 
+    var actualContractBalance       = new BigNumber(strActualContractBalance      ); 
+
+
 
 
 
