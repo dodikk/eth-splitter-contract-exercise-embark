@@ -92,9 +92,6 @@ async function renderState()
     $("#splitter_state_table #row_contract .col_balance_wei").html(contractBalance      );
     $("#splitter_state_table #row_contract .col_balance_eth").html(strContractBalanceEth);
 
-
-//    { this.state.web3.utils.fromWei( this.state.senderBalance, 'ether') }
-
 }
 
 
@@ -114,5 +111,8 @@ async function loadAccountsAsync()
     _sender         = _accounts[0];
     _firstReceiver  = _accounts[1];
     _secondReceiver = _accounts[2];
+
+
+    await renderState();
 }
 
