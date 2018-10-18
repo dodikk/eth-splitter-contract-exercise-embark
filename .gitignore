@@ -12,3 +12,4 @@ config/livenet/password
 package-lock.json
 chains.json
 config/development/password
+*.save
