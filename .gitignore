@@ -8,5 +8,6 @@ config/livenet/password
 
 ## ????
 *.js.swp
+*.swp
 package-lock.json
 chains.json
