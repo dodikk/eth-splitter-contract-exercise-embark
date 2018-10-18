@@ -57,9 +57,9 @@ async function renderState()
     var strSenderAddress = _sender;
     var strSenderBalanceEth = web3.utils.fromWei(senderBalance);
 
-    $("#splitter_state_table #row_sender .col_address"    ).html(strSenderAddress   );
-    $("#splitter_state_table #row_sender .col_balance_wei").html(senderBalance      );
-    $("#splitter_state_table #row_sender .col_balance_eth").html(strSenderBalanceEth);
+    $("#row_sender .col_address"    ).html(strSenderAddress   );
+    $("#row_sender .col_balance_wei").html(senderBalance      );
+    $("#row_sender .col_balance_eth").html(strSenderBalanceEth);
 
 
     // =====
@@ -67,9 +67,9 @@ async function renderState()
     var strFirstReceiverAddress = _firstReceiver;
     var strFirstReceiverBalanceEth = web3.utils.fromWei(firstStrangerBalance);
 
-    $("#splitter_state_table #row_recv_1 .col_address"    ).html(strFirstReceiverAddress   );
-    $("#splitter_state_table #row_recv_1 .col_balance_wei").html(firstStrangerBalance      );
-    $("#splitter_state_table #row_recv_1 .col_balance_eth").html(strFirstReceiverBalanceEth);
+    $("#row_recv_1 .col_address"    ).html(strFirstReceiverAddress   );
+    $("#row_recv_1 .col_balance_wei").html(firstStrangerBalance      );
+    $("#row_recv_1 .col_balance_eth").html(strFirstReceiverBalanceEth);
 
 
     // =====
@@ -77,9 +77,9 @@ async function renderState()
     var strSecondReceiverAddress = _secondReceiver;
     var strSecondReceiverBalanceEth = web3.utils.fromWei(secondStrangerBalance);
 
-    $("#splitter_state_table #row_recv_2 .col_address"    ).html(strSecondReceiverAddress   );
-    $("#splitter_state_table #row_recv_2 .col_balance_wei").html(secondStrangerBalance      );
-    $("#splitter_state_table #row_recv_2 .col_balance_eth").html(strSecondReceiverBalanceEth);
+    $("#row_recv_2 .col_address"    ).html(strSecondReceiverAddress   );
+    $("#row_recv_2 .col_balance_wei").html(secondStrangerBalance      );
+    $("#row_recv_2 .col_balance_eth").html(strSecondReceiverBalanceEth);
 
 
 
@@ -88,9 +88,10 @@ async function renderState()
     var strContractAddress = _splitterInstanceAddress;
     var strContractBalanceEth = web3.utils.fromWei(secondStrangerBalance);
 
-    $("#splitter_state_table #row_contract .col_address"    ).html(strContractAddress   );
-    $("#splitter_state_table #row_contract .col_balance_wei").html(contractBalance      );
-    $("#splitter_state_table #row_contract .col_balance_eth").html(strContractBalanceEth);
+    $("#row_contract .col_address"    ).html(strContractAddress   );
+    $("#row_contract .col_balance_wei").html(contractBalance      );
+    $("#row_contract .col_balance_eth").html(strContractBalanceEth);
+
 
 }
 
