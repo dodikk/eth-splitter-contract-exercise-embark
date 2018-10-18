@@ -24,6 +24,8 @@ async function ()
      console.log("=== [BEGIN] document.ready");
 
      await loadAccountsAsync();
+     subscribeToContractEventsAsync();
+
 
      $("#splitter_button button").click(
      async function ()
@@ -67,7 +69,36 @@ async function ()
 }) // func document.ready()
 
 
+function subscribeToContractEventsAsync()
+{
 
+//    AdkSplitterForTwo.events.LogEndSplit(function (error, events) {} )
+//     AdkSplitterForTwo.events.allEvents(function (error, events) {} )
+
+    // Other subscription methods do not seem to work
+    // they are commented above
+    //
+    web3.eth.subscribe('logs',
+    {
+        address: _splitterInstanceAddress
+    },
+    function (event, error)
+    {
+    })
+    .on('data',
+    function (event)
+    {
+        console.log(`=== [EVENT] LogEndSplit | event : ${event} |`);
+        renderState();
+    })
+    .on('error',
+    function (error)
+    {
+        console.log(`=== [EVENT] LogEndSplit | error : ${error} |`);
+        renderState();
+    });
+
+}
 
 
 async function renderState()
