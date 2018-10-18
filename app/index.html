@@ -5,7 +5,70 @@
     <script src="js/app.js"></script>
   </head>
   <body>
-    <h3>Welcome to Embark!</h3>
-    <p>See the <a href="http://embark.readthedocs.io/en/latest/index.html" target="_blank">Embark's documentation</a> to see what you can do with Embark!</p>
+     <div id="splitter.root">
+        
+        <h1>Welcome to the excercise ether splitting app</h1>
+        <p>When the button is tapped, the transfer should happen</p>
+        
+        
+        <div id="splitter.state">
+
+        <h2>Accounts state</h2>
+
+
+        <table id="splitter.state.table">
+        <tbody>
+           <tr id="row_header">
+               <th class="col_title"></th>
+               <th class="col_address">Address</th>
+               <th class="col_balance_wei">Balance in Wei</th>
+               <th class="col_balance_eth">Balance in ether</th>
+          </tr>
+
+           <tr id="row_sender">
+               <td class="col_title">Sender</td>
+               <td class="col_address">N/A</td>
+               <td class="col_balance_wei">N/A</td>
+               <td class="col_balance_eth">N/A</td>
+           </tr>
+
+
+          <tr id="row_recv_1">
+               <td class="col_title">First Receiver</td>
+               <td class="col_address">N/A</td>
+               <td class="col_balance_wei">N/A</td>
+               <td class="col_balance_eth">N/A</td>
+           </tr>
+
+          <tr id="row_recv_2">
+               <td class="col_title">Second Receiver</td>
+               <td class="col_address">N/A</td>
+               <td class="col_balance_wei">N/A</td>
+               <td class="col_balance_eth">N/A</td>
+           </tr>
+
+
+
+           <tr id="row_contract">
+               <td class="col_title">Contract</td>
+               <td class="col_address">N/A</td>
+               <td class="col_balance_wei">N/A</td>
+               <td class="col_balance_eth">N/A</td>
+           </tr>
+
+        </tbody>
+        </table>
+
+        </div> <!-- splitter.state -->
+
+
+        <div id="splitter.button">	
+             <button> Split ether </button>
+        </div>  <!-- splitter.button  -->
+
+
+      </div>   <!-- splitter.root -->
+
+
   </body>
 </html>
