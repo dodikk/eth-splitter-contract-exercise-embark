@@ -11,3 +11,4 @@ config/livenet/password
 *.swp
 package-lock.json
 chains.json
+config/development/password

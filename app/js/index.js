@@ -5,8 +5,8 @@ import EmbarkJS from 'Embark/EmbarkJS';
 //import SimpleStorage from 'Embark/contracts/SimpleStorage';
 
 import AdkSplitterForTwo from 'Embark/contracts/AdkSplitterForTwo';
-import $ 'jquery';
-
+// import $ './jquery';
+var $ = require('jquery');
 
 
 var _accounts = null;

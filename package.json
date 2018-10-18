@@ -6,14 +6,15 @@
   },
   "author": "",
   "license": "MIT",
-  "homepage": "",
+  "homepage": ".",
   "devDependencies": {},
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "bignumber.js": "^7.2.1"
+    "bignumber.js": "^7.2.1",
+    "jquery": "^3.3.1"
   },
   "description": ""
 }
